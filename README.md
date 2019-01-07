@@ -4,7 +4,7 @@ This Action enables sending Slack messages to incoming webhook endpoints.
 
 It works by taking in escaped JSON that is [formatted for Slack's message API](https://api.slack.com/docs/messages) and send a request to the endpoint specified by [environment variables](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables).
 
-![Alt text](/examples/example_msg.png "Optional Title")
+![An example Slack message](/examples/example_msg.png)
 
 ## Basic Usage
 
@@ -18,6 +18,8 @@ action "Notify" {
   }
 }
 ```
+
+For some basic JSON examples see the [examples page](/examples/examples.json).
 
 ## Prerequisites
 
@@ -47,7 +49,6 @@ This is handy for pulling in default environment variables provided by GitHub as
 ### Additional Environment Variables
 
 As a way to make things easier a convenience environment variable called `BRANCH_OR_TAG` is added to the container. It is simply the name of the branch or value of a tag as defined by the default `$GITHUB_REF` environment variable. Combined with [filters](https://github.com/actions/bin/tree/master/filter) it can be a nice for certain messages.
-
 
 ## Usage
 A simple notification for a push of a tag to a repo follows:
