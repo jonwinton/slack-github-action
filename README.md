@@ -4,7 +4,7 @@ This Action enables sending Slack messages to incoming webhook endpoints.
 
 It works by taking in escaped JSON that is [formatted for Slack's message API](https://api.slack.com/docs/messages) and send a request to the endpoint specified by [environment variables](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables).
 
-![An example Slack message](/examples/example_msg.png)
+![A complex example Slack message with attachments](/examples/example_msg.png)
 
 ## Basic Usage
 
@@ -20,6 +20,8 @@ action "Notify" {
 ```
 
 For some basic JSON examples see the [examples page](/examples/examples.json).
+
+![A complex example Slack message with attachments](/examples/example_simple.png)
 
 ## Prerequisites
 
