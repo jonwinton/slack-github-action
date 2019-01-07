@@ -4,11 +4,25 @@ This Action enables sending Slack messages to incoming webhook endpoints.
 
 It works by taking in escaped JSON that is [formatted for Slack's message API](https://api.slack.com/docs/messages) and send a request to the endpoint specified by [environment variables](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables).
 
+![Alt text](/examples/example_msg.png "Optional Title")
+
+## Basic Usage
+
+```hcl
+action "Notify" {
+  needs = ["Filter For Tags"]
+  uses = "docker://jwinton/slack-github-action"
+  args = ["{\"text\":\"The tag [BRANCH_OR_TAG] was just pushed!\"}"]
+  env = {
+    SLACK_PATH = "/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
+  }
+}
+```
+
 ## Prerequisites
 
 - Create a [Slack app](https://api.slack.com/slack-apps)
 - Enable [Incoming Webhooks](https://api.slack.com/incoming-webhooks)
-
 
 ## Environment Variables & Interpolation
 
@@ -41,18 +55,18 @@ A simple notification for a push of a tag to a repo follows:
 ```hcl
 workflow "Test!" {
   on = "push"
-  resolves = ["Notify"]
+  resolves = ["Send Message"]
 }
 
 # Filter for master branch
-action "Filter Tags" {
+action "Filter For Tags" {
   uses = "actions/bin/filter@master"
   args = "tag v*"
 }
 
-action "Notify" {
-  needs = ["Filter Tags"]
-  uses = ""
+action "Send Message" {
+  needs = ["Filter For Tags"]
+  uses = "docker://jwinton/slack-github-action"
   args = ["{\"text\":\"The tag [BRANCH_OR_TAG] was just pushed!\"}"]
   env = {
     SLACK_PATH = "/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"

@@ -1,0 +1,33 @@
+// IMPORTANT! MAKE SURE YOU MINIFY AND ESCAPE QUOTES FOR ALL EXAMPLES!
+
+// Simple message
+{
+  "text": "Here is a simple message!"
+}
+
+// With env var interpolation
+{
+  "text": "Here is a simple message telling us the branch or tag that was just pushed [BRANCH_OR_TAG]!"
+}
+
+// With a mention
+// https://api.slack.com/changelog/2017-09-the-one-about-usernames
+{
+  "text": "Hey, <@U123>, [BRANCH_OR_TAG] was just pushed! :rocket:"
+}
+
+// Complex Message with attachments
+{
+  "text":"A new tag has just been pushed and will trigger a build! :crossed_fingers:",
+  "attachments":[{
+    "fields":[{
+      "title":"Version",
+      "value":"`[BRANCH_OR_TAG]`",
+      "short":true
+    }, {
+      "title": "Released By",
+      "value":"`[GITHUB_ACTOR]`",
+      "short":true
+    }]
+  }]
+}
