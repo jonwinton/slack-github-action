@@ -11,7 +11,7 @@ It works by taking in escaped JSON that is [formatted for Slack's message API](h
 ```hcl
 action "Notify" {
   needs = ["Filter For Tags"]
-  uses = "docker://jwinton/slack-github-action"
+  uses = "jwinton/slack-github-action"
   args = ["{\"text\":\"The tag [BRANCH_OR_TAG] was just pushed!\"}"]
   env = {
     SLACK_PATH = "/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
